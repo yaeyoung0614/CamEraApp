@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import CustomText from "./CustomText";
 
 const camBrands = [
   "Canon",
@@ -91,15 +92,12 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Image
-          source={require("../assets/icons/chess.png")}
-          style={styles.image}
-        />
+        <Image source={require("../assets/chess.png")} style={styles.image} />
         <View style={styles.textContainer}>
-          <Text style={styles.title}></Text>
-          <Text style={styles.subtitle}>
+          <CustomText style={styles.title}></CustomText>
+          <CustomText style={styles.subtitle}>
             Choose a brand below. Don't see your brand? Click the search button.
-          </Text>
+          </CustomText>
         </View>
       </View>
       <TextInput
@@ -116,7 +114,7 @@ const HomeScreen = () => {
             style={styles.brandItem}
             onPress={() => handleBrandPress(item)}
           >
-            <Text style={styles.brandText}>{item}</Text>
+            <CustomText style={styles.brandText}>{item}</CustomText>
           </TouchableOpacity>
         )}
         style={styles.list}
@@ -132,6 +130,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FFD7D7",
+    fontFamily: "AveriaRegular",
   },
   top: {
     marginTop: 60,
@@ -140,8 +139,13 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: { fontSize: 15, marginBottom: 5 },
-  subtitle: { fontSize: 15 },
-  image: { width: 60, height: 90, resizeMode: "contain", marginRight: 10 },
+  subtitle: { fontSize: 16 },
+  image: {
+    width: 60,
+    height: 90,
+    resizeMode: "center",
+    marginRight: 10,
+  },
   textContainer: { flexDirection: "column", maxWidth: "70%" },
   searchBar: {
     marginTop: 20,
@@ -151,6 +155,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 10,
     backgroundColor: "#F6BABA",
+    fontFamily: "AveriaRegular",
+    fontSize: 15,
   },
   list: { marginTop: 20, width: "35%" },
   brandItem: {
@@ -162,8 +168,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   brandText: {
-    fontSize: 16,
-    fontFamily: "AveriaSansLibre-Regular",
+    fontSize: 20,
     color: "#F4A9A9",
   },
 });

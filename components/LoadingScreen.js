@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
+import CustomText from "./CustomText";
 
 const LoadingScreen = ({ navigation }) => {
   useEffect(() => {
     // Simulate a loading time
     setTimeout(() => {
-      navigation.replace("Home"); // Navigate to Home screen after 3 seconds
+      navigation.replace("Home");
     }, 2000);
   }, [navigation]);
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../assets/icons/chess.png")}
-        style={styles.image}
-      />
-      <Text style={styles.title}>CamEra</Text>
-      <Text style={styles.subtitle}>Find your dream camera</Text>
+      <Image source={require("../assets/chess.png")} style={styles.image} />
+      <CustomText style={styles.title}>CamEra</CustomText>
+      <CustomText style={styles.subtitle}>Find your dream camera</CustomText>
     </View>
   );
 };
@@ -40,7 +38,6 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    color: "#666",
   },
 });
 

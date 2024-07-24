@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import CustomText from "./CustomText";
 
 const BrandScreen = () => {
   const navigation = useNavigation();
@@ -39,8 +41,8 @@ const BrandScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Text style={styles.brandText}>{brandName}</Text>
-        <Text style={styles.contentText}>Popular Models</Text>
+        <CustomText style={styles.brandText}>{brandName}</CustomText>
+        <CustomText style={styles.contentText}>Popular Models</CustomText>
       </View>
 
       <TextInput
@@ -63,6 +65,15 @@ const BrandScreen = () => {
         style={styles.list}
         showsVerticalScrollIndicator={false}
       />
+
+      <View style={styles.navigationBar}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="arrow-left" size={30} color="#F6BABA" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <Icon name="home" size={30} color="#F6BABA" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -74,6 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#FFD7D7",
     padding: 20,
+    fontFamily: "AveriaSansLibre-Regular.ttf",
   },
   top: {
     marginTop: 60,
@@ -82,9 +94,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "AveriaSansLibre-Bold",
     textAlign: "center",
+    fontFamily: "AveriaRegular",
   },
   contentText: {
-    fontSize: 16,
+    fontSize: 20,
     textAlign: "center",
   },
   searchBar: {
@@ -95,6 +108,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 10,
     backgroundColor: "#F6BABA",
+    fontFamily: "AveriaRegular",
+    fontSize: 15,
   },
   list: {
     marginTop: 20,
@@ -108,11 +123,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,
+    fontFamily: "AveriaRegular",
   },
   modelText: {
-    fontSize: 16,
+    fontSize: 20,
     color: "#F4A9A9",
     textAlign: "center",
+    fontFamily: "AveriaRegular",
+  },
+  navigationBar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingVertical: 10,
   },
 });
 

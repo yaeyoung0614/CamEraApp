@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import CustomText from "./CustomText";
 
 const ModelScreen = () => {
   const route = useRoute();
   const { brandName, modelName } = route.params;
+  const navigation = useNavigation();
 
   const [selectedTab, setSelectedTab] = useState("General");
 
   const renderContent = () => {
     switch (selectedTab) {
       case "General":
-        return <Text style={styles.contentText}>Year Released: 2004</Text>;
+        return (
+          <CustomText style={styles.contentText}>
+            Year Released: 2004
+          </CustomText>
+        );
       case "Examples":
         return (
           <View style={styles.examplesContainer}>
@@ -34,18 +41,26 @@ const ModelScreen = () => {
           </View>
         );
       case "Reviews":
-        return <Text style={styles.contentText}>Reviews Content</Text>;
+        return (
+          <CustomText style={styles.contentText}>Reviews Content</CustomText>
+        );
       case "Buy Now":
-        return <Text style={styles.contentText}>Buy Now Content</Text>;
+        return (
+          <CustomText style={styles.contentText}>Buy Now Content</CustomText>
+        );
       default:
-        return <Text style={styles.contentText}>Year Released: 2004</Text>;
+        return (
+          <CustomText style={styles.contentText}>
+            Year Released: 2004
+          </CustomText>
+        );
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.modelText}>{modelName}</Text>
-      <Text style={styles.title}>All you need to know</Text>
+      <CustomText style={styles.modelText}>{modelName}</CustomText>
+      <CustomText style={styles.title}>All you need to know</CustomText>
       <View style={styles.tabContainer}>
         {["General", "Examples", "Reviews", "Buy Now"].map((tab) => (
           <TouchableOpacity
@@ -58,6 +73,14 @@ const ModelScreen = () => {
         ))}
       </View>
       <View style={styles.contentContainer}>{renderContent()}</View>
+      <View style={styles.navigationBar}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="arrow-left" size={30} color="#F6BABA" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <Icon name="home" size={30} color="#F6BABA" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -74,6 +97,7 @@ const styles = StyleSheet.create({
     fontFamily: "AveriaSansLibre-Bold",
     textAlign: "center",
     paddingTop: 35,
+    fontFamily: "AveriaRegular",
   },
   title: {
     fontSize: 16,
@@ -96,10 +120,12 @@ const styles = StyleSheet.create({
   },
   activeTab: {
     backgroundColor: "#FFD7D7",
+    color: "#c46060",
   },
   tabText: {
     fontSize: 16,
     color: "#FFF",
+    fontFamily: "AveriaRegular",
   },
   contentContainer: {
     flex: 1,
@@ -111,15 +137,21 @@ const styles = StyleSheet.create({
   contentText: {
     fontSize: 16,
     color: "#FFF",
+    margin: 0,
   },
   image: {
     width: 280,
     height: 150,
-    margin: 5,
   },
   examplesContainer: {
     verticalAlign: "center",
     alignItems: "center",
+  },
+  navigationBar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingVertical: 10,
+    width: "20%",
   },
 });
 
